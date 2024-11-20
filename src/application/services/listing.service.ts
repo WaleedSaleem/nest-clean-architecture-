@@ -1,7 +1,7 @@
 // src/application/services/listing.service.ts
 import { Injectable, Inject } from '@nestjs/common';
 import {
-  ListingRepository,
+  IListingRepository,
   LISTING_REPOSITORY,
 } from '../../domain/repositories/listing.repository';
 import { Listing } from '../../domain/entities/listing.entity';
@@ -10,7 +10,7 @@ import { Listing } from '../../domain/entities/listing.entity';
 export class ListingService {
   constructor(
     @Inject(LISTING_REPOSITORY)
-    private readonly listingRepo: ListingRepository,
+    private readonly listingRepo: IListingRepository,
   ) {}
 
   async getAllListings(): Promise<Listing[]> {

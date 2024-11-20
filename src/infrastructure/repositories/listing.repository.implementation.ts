@@ -3,12 +3,12 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { ListingRepository } from '../../domain/repositories/listing.repository';
+import { IListingRepository } from '../../domain/repositories/listing.repository';
 import { Listing } from '../../domain/entities/listing.entity';
 import { ListingDocument } from '../database/schemas/listing.schema';
 
 @Injectable()
-export class ListingRepositoryImplementation implements ListingRepository {
+export class ListingRepositoryImplementation implements IListingRepository {
   constructor(
     @InjectModel('Listing')
     private readonly listingModel: Model<ListingDocument>,
