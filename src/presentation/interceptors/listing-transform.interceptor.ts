@@ -19,8 +19,7 @@ export class ListingTransformInterceptor extends TransformInterceptor<ListingDTO
     return {
       ...listing,
       // Add or modify properties
-      displayPrice: `$${listing.price.toLocaleString()}`,
-      fullLocation: `${listing.location}, Some Country`,
+      location: `${listing.location}, Some Country`,
       // Remove properties if needed
       // id: undefined,
     };

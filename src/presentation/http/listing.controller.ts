@@ -41,9 +41,7 @@ export class ListingController {
   }
 
   @Post()
-  async createListing(
-    @Body() data: { title: string; price: number; location: string },
-  ): Promise<ListingDTO> {
+  async createListing(@Body() data: ListingDTO): Promise<ListingDTO> {
     const listing = await this.listingService.createListing(data);
     return {
       id: listing.id,
