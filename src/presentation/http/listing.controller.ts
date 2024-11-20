@@ -1,8 +1,17 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseInterceptors,
+} from '@nestjs/common';
 import { ListingService } from '../../application/services/listing.service';
 import { ListingDTO } from '../../application/dtos/listing.dto';
+import { ListingTransformInterceptor } from '../interceptors/listing-transform.interceptor';
 
 @Controller('listings')
+@UseInterceptors(ListingTransformInterceptor)
 export class ListingController {
   constructor(private readonly listingService: ListingService) {}
 
