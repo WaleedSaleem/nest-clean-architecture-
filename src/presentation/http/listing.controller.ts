@@ -23,6 +23,7 @@ export class ListingController {
       title: listing.title,
       price: listing.price,
       location: listing.location,
+      images: listing.images,
     }));
   }
 

@@ -4,5 +4,6 @@ export class Listing {
     public title: string,
     public price: number,
     public location: string,
+    public images?: string[],
   ) {}
 }

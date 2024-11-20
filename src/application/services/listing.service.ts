@@ -1,20 +1,34 @@
-// src/application/services/listing.service.ts
 import { Injectable, Inject } from '@nestjs/common';
 import {
   IListingRepository,
   LISTING_REPOSITORY,
 } from '../../domain/repositories/listing.repository';
 import { Listing } from '../../domain/entities/listing.entity';
+import {
+  IImageService,
+  IMAGE_SERVICE,
+} from '../../domain/services/image.service';
 
 @Injectable()
 export class ListingService {
   constructor(
     @Inject(LISTING_REPOSITORY)
     private readonly listingRepo: IListingRepository,
+    @Inject(IMAGE_SERVICE)
+    private readonly imageService: IImageService,
   ) {}
 
   async getAllListings(): Promise<Listing[]> {
-    return this.listingRepo.findAll();
+    const listings = await this.listingRepo.findAll();
+
+    const listingIds = listings.map((listing) => listing.id);
+
+    const imagesMap = await this.imageService.getImagesForListings(listingIds);
+
+    return listings.map((listing) => {
+      listing.images = imagesMap[listing.id] || [];
+      return listing;
+    });
   }
 
   async getListingById(id: string): Promise<Listing | null> {
