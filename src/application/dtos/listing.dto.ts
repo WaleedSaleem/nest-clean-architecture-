@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class ListingDTO {
   id: string;
@@ -14,6 +14,10 @@ export class ListingDTO {
   @IsString()
   @IsNotEmpty()
   location: string;
+
+  @IsString()
+  @IsOptional()
+  images?: string[];
 }
 
 // export class ListingDTO {
