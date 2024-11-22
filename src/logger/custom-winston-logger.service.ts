@@ -14,16 +14,20 @@ export class CustomWinstonLoggerService implements LoggerService {
 
   constructor() {
     this.logger = createLogger({
-      level: 'silly', // Log all levels
       format: format.combine(
-        format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-        format.colorize(),
+        format.timestamp({
+          format: 'DD/MM/YYYY HH:mm:ss',
+        }),
+        format.errors({ stack: true }),
+        format.splat(),
+        format.colorize({ all: true }), // Move colorize here and apply to all fields
         format.printf(({ timestamp, level, message, context, ...meta }) => {
-          const contextStr = context ? ` [${context}]` : '';
+          // Place the context (service name) at the beginning
+          const contextStr = context ? `[${context}] ` : '';
           const metaStr = Object.keys(meta).length
             ? ` - ${JSON.stringify(meta)}`
             : '';
-          return `${timestamp} ${level.toUpperCase()}${contextStr}: ${message}${metaStr}`;
+          return `${contextStr}${timestamp} ${level}: ${message}${metaStr}`;
         }),
       ),
       transports: [new transports.Console()],
