@@ -1,9 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { CustomWinstonLoggerService } from './logger/custom-winston-logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Logger
+  const loggerService = app.get(CustomWinstonLoggerService);
+  const logger = loggerService.createLogger('Bootstrap');
+  // Replace the built-in logger with your custom logger
+  app.useLogger(logger);
 
   // Enable validation globally
   app.useGlobalPipes(
