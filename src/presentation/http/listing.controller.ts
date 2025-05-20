@@ -65,4 +65,16 @@ export class ListingController {
       location: listing.location,
     };
   }
+
+  @Get('recent')
+  async getRecentListings(): Promise<ListingDTO[]> {
+    const listings = await this.listingService.getRecentListings(5);
+    return listings.map((listing) => ({
+      id: listing.id,
+      title: listing.title,
+      price: listing.price,
+      location: listing.location,
+      images: listing.images,
+    }));
+  }
 }
