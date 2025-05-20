@@ -15,3 +15,4 @@ export class ListingDocument extends Document {
 }
 
 export const ListingSchema = SchemaFactory.createForClass(ListingDocument);
+ListingSchema.set('timestamps', true);

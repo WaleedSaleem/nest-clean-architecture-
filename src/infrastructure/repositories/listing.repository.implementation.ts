@@ -43,4 +43,14 @@ export class ListingRepositoryImplementation implements IListingRepository {
       savedListing.location,
     );
   }
+
+  async findRecent(since: Date): Promise<Listing[]> {
+    const listings = await this.listingModel
+      .find({ createdAt: { $gte: since } })
+      .exec();
+    return listings.map(
+      (listing) =>
+        new Listing(listing.id, listing.title, listing.price, listing.location),
+    );
+  }
 }

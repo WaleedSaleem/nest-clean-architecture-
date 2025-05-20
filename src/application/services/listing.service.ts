@@ -43,4 +43,18 @@ export class ListingService {
     const listing = new Listing(null, data.title, data.price, data.location);
     return this.listingRepo.create(listing);
   }
+
+  async getRecentListings(days: number = 5): Promise<Listing[]> {
+    const since = new Date();
+    since.setDate(since.getDate() - days);
+    const listings = await this.listingRepo.findRecent(since);
+
+    const listingIds = listings.map((listing) => listing.id);
+    const imagesMap = await this.imageService.getImagesForListings(listingIds);
+
+    return listings.map((listing) => {
+      listing.images = imagesMap[listing.id] || [];
+      return listing;
+    });
+  }
 }

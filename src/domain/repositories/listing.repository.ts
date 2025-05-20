@@ -7,4 +7,5 @@ export interface IListingRepository {
   findAll(): Promise<Listing[]>;
   findById(id: string): Promise<Listing | null>;
   create(listing: Listing): Promise<Listing>;
+  findRecent(since: Date): Promise<Listing[]>; // <-- Add this
 }
