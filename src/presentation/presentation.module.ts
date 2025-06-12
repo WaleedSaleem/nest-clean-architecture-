@@ -1,10 +1,11 @@
 // src/presentation/presentation.module.ts
 import { Module } from '@nestjs/common';
-import { ListingController } from './http/listing.controller';
+import { PropertyController } from './http/property/property.controller';
 import { ApplicationModule } from '../application/application.module';
+import { InfrastructureModule } from '../infrastructure/infrastructure.module';
 
 @Module({
-  imports: [ApplicationModule],
-  controllers: [ListingController],
+  imports: [ApplicationModule, InfrastructureModule],
+  controllers: [PropertyController],
 })
 export class PresentationModule {}
