@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PropertyRepository as IPropertyRepo } from '../../domain/property/property.repository';
 import { Property } from '../../domain/property/property.entity';
-import { PropertyModel } from './property.model';
+import { Properties as PropertyModel } from '../entities/entities/Properties';
 
 @Injectable()
 export class PropertyRepositoryImpl implements IPropertyRepo {

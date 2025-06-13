@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "mysql",
+    "host": "reborn-prod-read-replica.c7ovausxswzg.ca-central-1.rds.amazonaws.com",
+    "port": 3306,
+    "username": "reborn-prod",
+    "password": "reborn@prod^789!",
+    "database": "",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]
