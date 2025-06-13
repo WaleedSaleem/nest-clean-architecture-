@@ -43,3 +43,5 @@ export class PropertyRepositoryImpl implements IPropertyRepo {
     );
   }
 }
+
+// look into adding auto mappers
