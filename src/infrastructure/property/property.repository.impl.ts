@@ -3,7 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PropertyRepository as IPropertyRepo } from '../../domain/property/property.repository';
 import { Property } from '../../domain/property/property.entity';
-import { Properties as PropertyModel } from '../entities/entities/Properties';
+import { Properties as PropertyModel } from '../entities/Properties';
+import { toDomainProperty } from './mappers/property.mapper';
 
 @Injectable()
 export class PropertyRepositoryImpl implements IPropertyRepo {
@@ -37,11 +38,6 @@ export class PropertyRepositoryImpl implements IPropertyRepo {
       query.andWhere('property.status = :status', { status: filters.status });
 
     const results = await query.getMany();
-    return results.map(
-      (p) =>
-        new Property(p.id, p.beds, p.baths, p.price, p.sqft, p.type, p.status),
-    );
+    return results.map(toDomainProperty);
   }
 }
-
-// look into adding auto mappers
