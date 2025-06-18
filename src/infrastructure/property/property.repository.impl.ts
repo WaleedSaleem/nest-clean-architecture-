@@ -37,6 +37,13 @@ export class PropertyRepositoryImpl implements IPropertyRepository {
     if (filters.status)
       query.andWhere('property.status = :status', { status: filters.status });
 
+    // Add default pagination: limit to 10 records unless overridden
+    const limit =
+      filters.limit && Number.isInteger(filters.limit) ? filters.limit : 10;
+    const offset =
+      filters.offset && Number.isInteger(filters.offset) ? filters.offset : 0;
+    query.take(limit).skip(offset);
+
     const results = await query.getMany();
     return results.map(toDomainProperty);
   }
