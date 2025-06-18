@@ -25,6 +25,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         password: configService.get<string>('database.mysqlPassword'),
         database: configService.get<string>('database.mysqlDatabase'),
         autoLoadEntities: true,
+        entities: [__dirname + 'src/infrastructure/entities/*.entity{.ts,.js}'],
         synchronize: false,
       }),
       inject: [ConfigService],
