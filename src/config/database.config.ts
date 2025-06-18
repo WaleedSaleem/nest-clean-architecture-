@@ -9,6 +9,7 @@ export default registerAs(
     mysqlDatabase: process.env.MYSQL_DATABASE,
     mysqlUserName: process.env.MYSQL_USER_NAME,
     mysqlPassword: process.env.MYSQL_PASSWORD,
+    mysqlReplicaPassword: process.env.MYSQL_REPLICA_PASSWORD,
     mysqlPrimaryHost: process.env.MYSQL_PRIMARY_HOST,
   }),
 );

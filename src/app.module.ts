@@ -6,19 +6,21 @@ import { DomainModule } from './domain/domain.module';
 import { ApplicationModule } from './application/application.module';
 import { LoggerModule } from './logger/logger.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import databaseConfigs from './config/database.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [databaseConfigs],
     }),
     LoggerModule,
     TypeOrmModule.forRootAsync({
-      name: 'replica',
+      // name: 'replica',
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql',
-        name: 'replica',
+        // name: 'replica',
         host: configService.get<string>('database.mysqlReplicaHost'),
         username: configService.get<string>('database.mysqlUserName'),
         port: configService.get<number>('database.mysqlPort'),

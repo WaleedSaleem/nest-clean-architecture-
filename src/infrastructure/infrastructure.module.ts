@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Properties as PropertyModel } from './entities/Properties';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PropertyModel], 'replica')],
+  imports: [TypeOrmModule.forFeature([PropertyModel])],
   providers: [PropertyRepositoryImpl],
   exports: [PropertyRepositoryImpl],
 })
