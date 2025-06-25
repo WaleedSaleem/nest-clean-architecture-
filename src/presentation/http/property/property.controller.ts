@@ -1,4 +1,12 @@
-import { Controller, Get, Query, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Param,
+  Post,
+  HttpCode,
+  Body,
+} from '@nestjs/common';
 import { GetPropertiesDto } from '../property/dtos/get-properties.dto';
 import { PropertyRepositoryImpl } from '../../../infrastructure/property/property.repository.impl';
 import { GetPropertiesUseCase } from '../../../application/property/get-properties.usecase';
@@ -22,24 +30,4 @@ export class PropertyController {
   //   const properties = await useCase.execute(+id);
   //   return properties.map(toPropertyResponse);
   // }
-
-  @Post('fetch-listing-pagination')
-  // @UseInterceptors(new TransformMultipleListingsInterceptor())
-  @HttpCode(200)
-  async fetchListingsWithPagination(
-    @Headers('Userservicetoken') userServiceToken: string,
-    @Headers('Cognitouserid') _cognitoUserId: string,
-    @Body() listingPaginatedDto: ListingPaginationDto,
-  ) {
-    this.logger.instance.silly(
-      `${ListingsController.name}`,
-      `${this.fetchListingsWithPagination.name}`,
-      'Fetch Listings with filter',
-      {},
-    );
-    return await this.rebornListingService.fetchListingsWithPagination(
-      listingPaginatedDto,
-      { userServiceToken, _cognitoUserId },
-    );
-  }
 }

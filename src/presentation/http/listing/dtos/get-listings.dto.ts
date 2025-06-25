@@ -8,7 +8,7 @@ import {
   IsDateString,
   IsEnum,
 } from 'class-validator';
-import { SortBy } from '../utilities/enums';
+import { SortBy } from '../../property/utilities/enums';
 
 export class ListingPaginationDto {
   // purpose of the listings ( sale , rent or all )

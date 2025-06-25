@@ -1,0 +1,31 @@
+export interface ListingFilters {
+  type: string;
+  purpose?: string;
+  pageSize?: number;
+  currentPage?: number;
+  locationName?: string;
+  locationType?: string;
+  minBeds?: number;
+  maxBeds?: number;
+  minBaths?: number;
+  maxBaths?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  streetId?: number;
+  minSqft?: number;
+  maxSqft?: number;
+  maxListDate?: string;
+  minListDate?: string;
+  buildingAge?: string;
+  lastStatus?: string[];
+  propertyType?: string[];
+  sortBy?: string;
+  polygon?: string;
+  viewPort?: string;
+  paginationApiPageSize?: number;
+  locationId?: string;
+  lat?: string;
+  long?: string;
+  radius?: string;
+  zip?: string;
+}
